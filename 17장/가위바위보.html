@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가위바위보 게임</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #result, #computer, #user {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>가위바위보 게임!</h1>
+
+    <button onclick="play('가위')">✌ 가위</button>
+    <button onclick="play('바위')">✊ 바위</button>
+    <button onclick="play('보')">🖐 보</button>
+
+    <div id="user"></div>
+    <div id="computer"></div>
+    <div id="result"></div>
+
+    <script>
+        function play(userChoice) {
+            const choices = ['가위', '바위', '보'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            // 화면에 선택 표시
+            document.getElementById('user').innerText = "당신의 선택: " + userChoice;
+            document.getElementById('computer').innerText = "컴퓨터의 선택: " + computerChoice;
+
+            // 승패 판정
+            let result = "";
+
+            if (userChoice === computerChoice) {
+                result = "🤝 비겼습니다!";
+            } 
+            else if (
+                (userChoice === '가위' && computerChoice === '보') ||
+                (userChoice === '바위' && computerChoice === '가위') ||
+                (userChoice === '보' && computerChoice === '바위')
+            ) {
+                result = "🎉 당신이 이겼습니다!";
+            } 
+            else {
+                result = "😢 당신이 졌습니다!";
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+
+</body>
+</html>
